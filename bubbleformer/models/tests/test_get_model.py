@@ -11,6 +11,7 @@ def test_avit(fields, patch_size, embed_dim):
     """
     model_params = {
         "fields": fields,
+        "time_window": 3,
         "patch_size": patch_size,
         "embed_dim": embed_dim,
         "num_heads": 4,
@@ -19,6 +20,29 @@ def test_avit(fields, patch_size, embed_dim):
     }
     spatial_dims = 64, 64
     model = get_model("avit", **model_params)
+    x = torch.randn(2, 3, fields, *spatial_dims) # (B, T, C, H, W)
+    y = model(x) # (B, T, C, H, W)
+
+    assert y.shape == (2, 3, fields, *spatial_dims)
+
+@pytest.mark.parametrize("fields", [1, 2])
+@pytest.mark.parametrize("patch_size", [4, 8, 16])
+@pytest.mark.parametrize("embed_dim", [192, 384])
+def test_avit_spatial(fields, patch_size, embed_dim):
+    """
+    Test AViT model with random configs
+    """
+    model_params = {
+        "fields": fields,
+        "time_window": 3,
+        "patch_size": patch_size,
+        "embed_dim": embed_dim,
+        "num_heads": 4,
+        "processor_blocks": 4,
+        "drop_path": 0.1
+    }
+    spatial_dims = 64, 64
+    model = get_model("avit_spatial_only", **model_params)
     x = torch.randn(2, 3, fields, *spatial_dims) # (B, T, C, H, W)
     y = model(x) # (B, T, C, H, W)
 
