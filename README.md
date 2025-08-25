@@ -1,5 +1,6 @@
 # Bubbleformer
 
+
 A transformer model for long range forecasting of boiling phenomena(an inherently chaotic, multiphase process central to energy and thermal systems) that generalizes across different liquids such as dielectrics and refrigerants.
 
 ![Bubbleformer Overview](media/paper_overview.png)
@@ -7,7 +8,9 @@ A transformer model for long range forecasting of boiling phenomena(an inherentl
 
 ## Overview
 
+
 Bubbleformer is a transformer-based spatiotemporal model that forecasts stable and long-range boiling dynamics (including nucleation, liquid-vapor interface evolution, and heat transfer) without dependence on simulation data during inference. The project combines:
+
 
 1. **Bubbleformer**: A novel transformer architecture for forecasting multiphase fluid dynamics
 2. **BubbleML 2.0**: A comprehensive dataset of boiling simulations across diverse fluids and configurations
